@@ -50,11 +50,12 @@ default:return[O,5];
 st++;
 }
 }
+const A=process.env.MAKEFUN_INPUT_DIR||'/input',B=process.env.MAKEFUN_OUTPUT_DIR||'/output';
 for(let n=1;n<=40;n++){
 const id='i'+String(n).padStart(3,'0');
-const P=fs.readFileSync('/input/'+id+'/program.bin'),I=fs.readFileSync('/input/'+id+'/input.bin');
+const P=fs.readFileSync(A+'/'+id+'/program.bin'),I=fs.readFileSync(A+'/'+id+'/input.bin');
 const r=run(P,I);
-fs.mkdirSync('/output/'+id,{recursive:true});
-fs.writeFileSync('/output/'+id+'/stdout.bin',Buffer.from(r[0]));
-fs.writeFileSync('/output/'+id+'/exit.txt',r[1]+'\n');
+fs.mkdirSync(B+'/'+id,{recursive:true});
+fs.writeFileSync(B+'/'+id+'/stdout.bin',Buffer.from(r[0]));
+fs.writeFileSync(B+'/'+id+'/exit.txt',r[1]+'\n');
 }
